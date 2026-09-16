@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider / JetBrains
+.idea/
+
+# Test and coverage output
+TestResults/
+coverage/
+
+# Local environment files
+.env
+*.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
