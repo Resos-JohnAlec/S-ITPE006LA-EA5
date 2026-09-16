@@ -1,0 +1,32 @@
+@model ECommerceInventory.Models.Order
+
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Order #@Model.Id.ToString("D4")</span>
+        <h1>Delete order</h1>
+        <p class="text-muted mb-0">This action cannot be undone.</p>
+    </div>
+</div>
+
+<div class="card card-soft details-card border-danger-subtle">
+    <div class="card-body">
+        <p>Are you sure you want to delete this order?</p>
+        <dl class="row">
+            <dt class="col-sm-4">Customer email</dt>
+            <dd class="col-sm-8">@Model.CustomerEmail</dd>
+            <dt class="col-sm-4">Order date</dt>
+            <dd class="col-sm-8">@Model.OrderDate.ToString("MMMM d, yyyy")</dd>
+            <dt class="col-sm-4">Total amount (PHP)</dt>
+            <dd class="col-sm-8 fw-semibold">PHP @Model.TotalAmount.ToString("N2")</dd>
+        </dl>
+        <form asp-action="Delete" method="post" class="d-flex gap-2">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete order</button>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

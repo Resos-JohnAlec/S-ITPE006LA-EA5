@@ -1,0 +1,60 @@
+@model IEnumerable<ECommerceInventory.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Sales</span>
+        <h1>Orders</h1>
+        <p class="text-muted mb-0">Review and manage customer orders.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">New order</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="card card-soft empty-state">
+        <div class="card-body text-center py-5">
+            <div class="empty-icon">+</div>
+            <h2 class="h5">No orders yet</h2>
+            <p class="text-muted">Create your first order to start tracking sales.</p>
+            <a asp-action="Create" class="btn btn-primary">Create an order</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card card-soft">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Customer email</th>
+                        <th>Order date</th>
+                        <th class="text-end">Total amount (PHP)</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><span class="order-number">#@item.Id.ToString("D4")</span></td>
+                            <td>@item.CustomerEmail</td>
+                            <td>@item.OrderDate.ToString("MMM d, yyyy")</td>
+                            <td class="text-end fw-semibold">PHP @item.TotalAmount.ToString("N2")</td>
+                            <td class="text-end action-links">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light">View</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

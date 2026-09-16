@@ -1,0 +1,47 @@
+@model ECommerceInventory.Models.Order
+
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Sales</span>
+        <h1>Create order</h1>
+        <p class="text-muted mb-0">Add the customer and order totals.</p>
+    </div>
+</div>
+
+<div class="card card-soft form-card">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="mb-3">
+                <label asp-for="CustomerEmail" class="form-label">Customer email</label>
+                <input asp-for="CustomerEmail" class="form-control" autocomplete="email" />
+                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OrderDate" class="form-label">Order date</label>
+                <input asp-for="OrderDate" type="datetime-local" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="TotalAmount" class="form-label">Total amount (PHP)</label>
+                <div class="input-group">
+                    <span class="input-group-text">PHP</span>
+                    <input asp-for="TotalAmount" type="number" step="0.01" class="form-control" />
+                </div>
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Create order</button>
+                <a asp-action="Index" class="btn btn-light">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

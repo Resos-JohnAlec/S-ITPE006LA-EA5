@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="hero-panel">
+    <div class="hero-content">
+        <span class="eyebrow">Your operations workspace</span>
+        <h1>Inventory, in one clear view.</h1>
+        <p>Keep products organized, monitor stock, and manage customer orders from one simple workspace.</p>
+        <div class="d-flex flex-wrap gap-2">
+            <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Browse products</a>
+            <a asp-controller="Orders" asp-action="Index" class="btn btn-light">View orders</a>
+        </div>
+    </div>
+    <div class="hero-mark" aria-hidden="true">EI</div>
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-md-6">
+        <a asp-controller="Products" asp-action="Index" class="dashboard-card h-100">
+            <span class="card-kicker">Catalog</span>
+            <h2>Products</h2>
+            <p>Manage names, prices, SKUs, and stock quantities.</p>
+            <span class="card-link">Open products <span aria-hidden="true">→</span></span>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a asp-controller="Orders" asp-action="Index" class="dashboard-card h-100">
+            <span class="card-kicker">Sales</span>
+            <h2>Orders</h2>
+            <p>Create and review customer orders and their totals.</p>
+            <span class="card-link">Open orders <span aria-hidden="true">→</span></span>
+        </a>
+    </div>
+</div>

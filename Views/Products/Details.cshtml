@@ -1,0 +1,40 @@
+@model ECommerceInventory.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Catalog</span>
+        <h1>Product details</h1>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit product</a>
+        <a asp-action="Index" class="btn btn-light">Back to products</a>
+    </div>
+</div>
+
+<div class="card card-soft details-card">
+    <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <span class="eyebrow">@Model.SKU</span>
+                <h2 class="h4 mb-0">@Model.Name</h2>
+            </div>
+            <span class="badge @(Model.StockQuantity > 0 ? "text-bg-success" : "text-bg-secondary")">
+                @(Model.StockQuantity > 0 ? "In stock" : "Out of stock")
+            </span>
+        </div>
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Stock Keeping Unit (SKU)</dt>
+            <dd class="col-sm-8">@Model.SKU</dd>
+            <dt class="col-sm-4">Product name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+            <dt class="col-sm-4">Price (PHP)</dt>
+            <dd class="col-sm-8 fw-semibold">PHP @Model.Price.ToString("N2")</dd>
+            <dt class="col-sm-4">Stock quantity</dt>
+            <dd class="col-sm-8">@Model.StockQuantity</dd>
+        </dl>
+    </div>
+</div>

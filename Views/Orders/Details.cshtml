@@ -1,0 +1,29 @@
+@model ECommerceInventory.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Order #@Model.Id.ToString("D4")</span>
+        <h1>Order details</h1>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit order</a>
+        <a asp-action="Index" class="btn btn-light">Back to orders</a>
+    </div>
+</div>
+
+<div class="card card-soft details-card">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Customer email</dt>
+            <dd class="col-sm-8">@Model.CustomerEmail</dd>
+            <dt class="col-sm-4">Order date</dt>
+            <dd class="col-sm-8">@Model.OrderDate.ToString("MMMM d, yyyy h:mm tt")</dd>
+            <dt class="col-sm-4">Total amount (PHP)</dt>
+            <dd class="col-sm-8 fw-semibold">PHP @Model.TotalAmount.ToString("N2")</dd>
+        </dl>
+    </div>
+</div>

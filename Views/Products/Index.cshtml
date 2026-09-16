@@ -1,0 +1,65 @@
+@model IEnumerable<ECommerceInventory.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Catalog</span>
+        <h1>Products</h1>
+        <p class="text-muted mb-0">Keep your product catalog and stock levels up to date.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Add product</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="card card-soft empty-state">
+        <div class="card-body text-center py-5">
+            <div class="empty-icon">+</div>
+            <h2 class="h5">No products yet</h2>
+            <p class="text-muted">Add a product to begin building your catalog.</p>
+            <a asp-action="Create" class="btn btn-primary">Add your first product</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card card-soft">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Stock Keeping Unit (SKU)</th>
+                        <th>Product name</th>
+                        <th>Price (PHP)</th>
+                        <th>Stock</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><span class="sku-value">@item.SKU</span></td>
+                            <td class="fw-semibold">@item.Name</td>
+                            <td>PHP @item.Price.ToString("N2")</td>
+                            <td>
+                                <span class="badge @(item.StockQuantity > 0 ? "text-bg-success" : "text-bg-secondary")">
+                                    @(item.StockQuantity > 0 ? "In stock" : "Out of stock")
+                                </span>
+                                <span class="text-muted ms-1">@item.StockQuantity</span>
+                            </td>
+                            <td class="text-end action-links">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light">View</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

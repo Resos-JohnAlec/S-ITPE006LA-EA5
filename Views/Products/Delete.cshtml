@@ -1,0 +1,36 @@
+@model ECommerceInventory.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Catalog</span>
+        <h1>Delete product</h1>
+        <p class="text-muted mb-0">This action cannot be undone.</p>
+    </div>
+</div>
+
+<div class="card card-soft details-card border-danger-subtle">
+    <div class="card-body">
+        <p>Are you sure you want to delete this product?</p>
+        <dl class="row">
+            <dt class="col-sm-4">Stock Keeping Unit (SKU)</dt>
+            <dd class="col-sm-8">@Model.SKU</dd>
+            <dt class="col-sm-4">Product name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+            <dt class="col-sm-4">Price (PHP)</dt>
+            <dd class="col-sm-8">PHP @Model.Price.ToString("N2")</dd>
+            <dt class="col-sm-4">Stock quantity</dt>
+            <dd class="col-sm-8">@Model.StockQuantity</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" class="d-flex gap-2">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete product</button>
+            <a asp-action="Index" class="btn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
+</div>
